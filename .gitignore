@@ -1,0 +1,13 @@
+# Local environment overrides (machine specific - e.g. host port remapping).
+.env
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build output
+**/target/
+*.log
+*.tmp

@@ -1,0 +1,18 @@
+# Keep shell scripts and container files LF, so they work inside Linux
+# containers regardless of the developer's platform or core.autocrlf setting.
+* text=auto eol=lf
+
+*.sh            text eol=lf
+Dockerfile      text eol=lf
+Dockerfile.*    text eol=lf
+*.yaml          text eol=lf
+*.yml           text eol=lf
+
+# Windows-only scripts keep CRLF.
+*.ps1           text eol=crlf
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
+# Certificate bundles are consumed verbatim - never transform them.
+*.crt           -text
+*.pem           -text
