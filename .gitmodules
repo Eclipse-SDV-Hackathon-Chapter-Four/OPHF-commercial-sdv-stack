@@ -1,9 +1,9 @@
 [submodule "classic-diagnostic-adapter"]
 	path = classic-diagnostic-adapter
-	url = git@github.com:timviola-cmi/classic-diagnostic-adapter.git
+	url = https://github.com/timviola-cmi/classic-diagnostic-adapter.git
 [submodule "commercial-sdv-stack"]
 	path = commercial-sdv-stack
-	url = git@github.com:timviola-cmi/commercial-sdv-stack.git
+	url = https://github.com/timviola-cmi/commercial-sdv-stack
 [submodule "opensovd-core"]
 	path = opensovd-core
-	url = git@github.com:timviola-cmi/opensovd-core.git
+	url = https://github.com/timviola-cmi/opensovd-core
