@@ -8,8 +8,49 @@ a corporate Windows machine.
 
 | Path | Contents |
 | --- | --- |
-| `commercial-sdv-stack/` | Eclipse SDV commercial SDV stack blueprint |
+| `commercial-sdv-stack/` | Eclipse SDV commercial SDV stack blueprint (submodule) |
+| `classic-diagnostic-adapter/` | OpenSOVD Classic Diagnostic Adapter; `sovd-cda` is built from it (submodule) |
+| `opensovd-core/` | OpenSOVD core (submodule) |
 | `corp-ca/` | Corporate TLS proxy workaround for container builds |
+
+## Cloning
+
+`commercial-sdv-stack`, `classic-diagnostic-adapter` and `opensovd-core` are git
+submodules pointing at the `timviola-cmi` forks. `opensovd` has no URL in
+`.gitmodules` yet, so initialise the submodules explicitly instead of using
+`--recurse-submodules`:
+
+```sh
+git clone git@github.com:timviola-cmi/hackathon2026.git
+cd hackathon2026
+git submodule update --init classic-diagnostic-adapter commercial-sdv-stack opensovd-core
+```
+
+## Changing the CDA
+
+`sovd-cda` is built from the local `classic-diagnostic-adapter/` folder
+(`../classic-diagnostic-adapter` in `commercial-sdv-stack/docker-compose.yaml`),
+not from GitHub. The diagnostic database is not part of the image; it is mounted
+from `commercial-sdv-stack/config/cda/blueprint-ecu.mdd`.
+
+Submodules are checked out on a detached HEAD, so create a branch before
+committing. Pushes go to `timviola-cmi/classic-diagnostic-adapter`:
+
+```sh
+cd classic-diagnostic-adapter
+git checkout -b my-change
+# ...edit, commit...
+git push -u origin my-change
+
+# rebuild and restart only the CDA
+cd ../commercial-sdv-stack
+docker compose up -d --build sovd-cda
+
+# record the new CDA commit in hackathon2026
+cd ..
+git add classic-diagnostic-adapter
+git commit -m "Bump classic-diagnostic-adapter"
+```
 
 ## corp-ca
 
