@@ -6,4 +6,4 @@
 	url = git@github.com:Eclipse-SDV-Hackathon-Chapter-Four/commercial-sdv-stack.git
 [submodule "demo"]
 	path = demo
-	url = https://github.com/eclipse-opensovd/demo.git
+	url = git@github.com:Eclipse-SDV-Hackathon-Chapter-Four/demo.git
