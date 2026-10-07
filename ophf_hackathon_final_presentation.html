@@ -78,6 +78,43 @@
   .takeaway{margin-top:18px;border:1px solid rgba(102,242,161,.45);background:rgba(102,242,161,.08);border-radius:16px;padding:16px 20px;color:#e2fff0;font-size:clamp(15px,1.1vw,20px);font-weight:850;text-align:center}
 
   @media(max-width:980px){html,body{overflow:auto}.slide{position:relative;min-height:100vh;overflow:auto}.title-grid,.ach-grid,.arch-layout,.verify-grid,.verify-rows{grid-template-columns:1fr}.arch-canvas{min-height:620px}.footer,.nav,.progress{position:fixed}}
+
+  /* Live demo slide */
+  .dm-stage{position:relative;flex:1;min-height:0;margin-top:6px}
+  .dm-canvas{position:absolute;left:50%;top:50%;width:1320px;height:780px;transform:translate(-50%,-50%);transform-origin:center}
+  .dm-canvas>svg{position:absolute;left:0;top:0;width:1320px;height:620px}
+  .dm-card{position:absolute;border:1px solid #2d4e68;border-radius:18px;background:linear-gradient(180deg,rgba(12,31,50,.96),rgba(7,22,37,.98));padding:14px 16px;box-shadow:0 14px 40px rgba(0,0,0,.28)}
+  .dm-card:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;border-radius:18px 18px 0 0;background:linear-gradient(90deg,var(--cyan),var(--green));opacity:.85}
+  .dm-card.dm-addon{border-color:rgba(255,207,102,.55)}.dm-card.dm-addon:before{background:linear-gradient(90deg,var(--amber),#ffb866)}
+  .dm-card.dm-future{border-style:dashed;border-color:#3a5f85;background:rgba(10,24,40,.6);box-shadow:none}.dm-card.dm-future:before{display:none}
+  .dm-card h3{margin:0 0 2px;font-size:17px;letter-spacing:-.02em}
+  .dm-role{font-size:11px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--cyan);margin-bottom:6px}.dm-addon .dm-role{color:var(--amber)}
+  .dm-os{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:#bcd2e6;border:1px solid #33567a;border-radius:999px;padding:2px 9px;margin-top:8px}
+  .dm-chips{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+  .dm-chip{border:1px solid #30557c;background:rgba(16,36,58,.9);border-radius:9px;padding:5px 10px;font-size:12.5px;font-weight:700;color:#e4eefa}
+  .dm-chip small{display:block;font-weight:600;color:var(--muted);font-size:10.5px;margin-top:1px}
+  .dm-chip.dm-addon{border-color:rgba(255,207,102,.5);color:#ffe9bd}
+  .dm-vmbox{border:1px dashed #3d6a96;border-radius:12px;padding:8px 10px;margin-top:8px}
+  .dm-vmlabel{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:900;margin-bottom:6px}
+  .dm-sensors{margin:8px 0 0;padding:0;list-style:none;font-size:12px;color:var(--muted);line-height:1.5}.dm-sensors li:before{content:"— ";color:var(--green)}
+  .dm-edge-label{position:absolute;font-size:11.5px;font-weight:800;color:#cfe6fb;background:rgba(7,17,31,.92);border:1px solid #2d4e68;border-radius:999px;padding:3px 11px;white-space:nowrap}
+  .dm-edge-label.dm-future{color:#8fa7bf;border-style:dashed}
+  .dm-flow{position:absolute;left:0;right:0;top:628px;border:1px solid #2d4e68;border-radius:16px;background:linear-gradient(180deg,rgba(12,31,50,.96),rgba(7,22,37,.98));padding:12px 18px}
+  .dm-flowtitle{font-size:10.5px;text-transform:uppercase;letter-spacing:.16em;color:var(--green);font-weight:900;margin-bottom:9px}
+  .dm-flowline{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+  .dm-hop{border:1px solid #33678f;background:rgba(16,36,58,.95);border-radius:10px;padding:6px 13px;font-weight:800;font-size:13.5px}
+  .dm-via{display:flex;flex-direction:column;align-items:center;min-width:84px}
+  .dm-via .dm-proto{font-size:10px;font-weight:800;color:var(--cyan);letter-spacing:.04em;margin-bottom:1px}
+  .dm-via .dm-arrow{color:var(--green);font-size:15px;line-height:1}
+  .dm-flownote{margin-left:auto;font-size:11.5px;color:var(--muted);max-width:330px}.dm-flownote b{color:var(--green)}
+  .dm-legend{position:absolute;left:0;right:0;top:748px;display:flex;gap:22px;flex-wrap:wrap;font-size:12px;color:var(--muted);align-items:center}
+  .dm-key{display:flex;align-items:center;gap:7px}
+  .dm-swatch{width:24px;height:13px;border-radius:5px;border:1px solid #2d4e68;background:linear-gradient(180deg,rgba(12,31,50,.96),rgba(7,22,37,.98));position:relative;flex:none}
+  .dm-swatch:before{content:"";position:absolute;inset:0 0 auto 0;height:2.5px;border-radius:5px 5px 0 0;background:linear-gradient(90deg,var(--cyan),var(--green))}
+  .dm-swatch.dm-addon{border-color:rgba(255,207,102,.55)}.dm-swatch.dm-addon:before{background:var(--amber)}
+  .dm-swatch.dm-future{border-style:dashed;background:transparent}.dm-swatch.dm-future:before{display:none}
+  .dm-hw{position:absolute;top:12px;right:14px;width:62px;height:auto;filter:drop-shadow(0 4px 10px rgba(0,0,0,.35))}
+  .dm-has-hw .dm-role,.dm-has-hw h3{padding-right:72px}
 </style>
 </head>
 <body>
@@ -97,7 +134,7 @@
 </div>
 </div>
 <div class="copyright-note">COPYRIGHT (C) 2026, ECLIPSE FOUNDATION</div>
-<div class="footer"><span><b>01</b> / 04</span><span class="source-strip">Eclipse SDV Hackathon Friedrichshafen 2026 — OPHF final presentation.</span></div>
+<div class="footer"><span><b>01</b> / 05</span><span class="source-strip">Eclipse SDV Hackathon Friedrichshafen 2026 — OPHF final presentation.</span></div>
 </section>
 
 <section class="slide" data-slide="1">
@@ -113,7 +150,7 @@
 <div class="ach-card"><span class="ach-tag">Proof</span><h3>CI on every change</h3><p>Prebuilt, content-hashed images on GHCR keep full authorization runs at <b>~5 minutes</b>; a new workflow runs all uService unit tests.</p></div>
 </div>
 <div class="merge-band">Every item reviewed and merged as its own PR into the <span class="mono">hackathon</span> branch — now bundled as one upstream PR on top of #5.</div>
-<div class="footer"><span><b>02</b> / 04</span><span class="source-strip">Source: fork PRs #1, #3, #4, #5, #10, #11, #12, #13, #15 — merged to the hackathon branch.</span></div>
+<div class="footer"><span><b>02</b> / 05</span><span class="source-strip">Source: fork PRs #1, #3, #4, #5, #10, #11, #12, #13, #15 — merged to the hackathon branch.</span></div>
 </section>
 
 <section class="slide" data-slide="2">
@@ -148,7 +185,7 @@
 <div class="leg-item"><b>5</b><span><b2>Everything verified</b2> — integration tests + CI guard every change</span></div>
 </div>
 </div>
-<div class="footer"><span><b>03</b> / 04</span><span class="source-strip">Source: commercial-sdv-stack docker-compose + hackathon PR summary — changed areas highlighted.</span></div>
+<div class="footer"><span><b>03</b> / 05</span><span class="source-strip">Source: commercial-sdv-stack docker-compose + hackathon PR summary — changed areas highlighted.</span></div>
 </section>
 
 <section class="slide" data-slide="3">
@@ -173,12 +210,109 @@
 </div></div>
 </div>
 <div class="takeaway">The identity plane is tighter, the attack surface is smaller, authorization fails closed — and the tests that prove it run automatically.</div>
-<div class="footer"><span><b>04</b> / 04</span><span class="source-strip">Source: PR verification section — test results, hardening checks, CI, and multi-platform demo runs.</span></div>
+<div class="footer"><span><b>04</b> / 05</span><span class="source-strip">Source: PR verification section — test results, hardening checks, CI, and multi-platform demo runs.</span></div>
+</section>
+
+<section class="slide" data-slide="4">
+<div class="eyebrow">Live demo</div>
+<h2>The demo — <span class="accent">on real hardware</span></h2>
+<div class="dm-stage" id="dmStage">
+<div class="dm-canvas" id="dmCanvas">
+<svg viewBox="0 0 1320 620" aria-hidden="true">
+<defs>
+<marker id="dmArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#4fd9ff"/></marker>
+<marker id="dmArrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#66f2a1"/></marker>
+</defs>
+<path d="M330,120 L508,120" stroke="#4fd9ff" stroke-width="2.2" fill="none" marker-end="url(#dmArr)" marker-start="url(#dmArr)"/>
+<path d="M520,190 C430,250 360,290 310,348" stroke="#66f2a1" stroke-width="2.2" fill="none" marker-end="url(#dmArrG)"/>
+<path d="M150,518 L150,488" stroke="#6f87a0" stroke-width="2" stroke-dasharray="6 6" fill="none"/>
+<path d="M660,348 L660,212" stroke="#4fd9ff" stroke-width="2.2" fill="none" marker-end="url(#dmArr)" marker-start="url(#dmArr)"/>
+<path d="M802,120 L930,120" stroke="#4fd9ff" stroke-width="2.2" fill="none" marker-end="url(#dmArr)" marker-start="url(#dmArr)"/>
+<path d="M1100,268 L1100,396" stroke="#ffcf66" stroke-width="2" fill="none" marker-end="url(#dmArrG)"/>
+</svg>
+<div class="dm-card dm-has-hw" style="left:20px;top:30px;width:300px">
+<svg class="dm-hw" viewBox="0 0 64 44" aria-hidden="true"><rect x="14" y="3" width="36" height="24" rx="2.5" fill="#0d1c2e" stroke="#4fd9ff" stroke-width="1.6"/><rect x="17.5" y="6.5" width="29" height="17" rx="1" fill="#10243a"/><path d="M20,11 h14 M20,15 h22 M20,19 h10" stroke="#66f2a1" stroke-width="1.4" stroke-linecap="round" opacity=".8"/><path d="M9,31 L55,31 L60,38 Q60,40 57,40 L7,40 Q4,40 4,38 Z" fill="#10243a" stroke="#28415f" stroke-width="1.4"/><rect x="26" y="33" width="12" height="2.6" rx="1.3" fill="#28415f"/></svg>
+<div class="dm-role">Back-end · PC</div><h3>Fleet Back-end</h3>
+<div class="dm-vmbox"><div class="dm-vmlabel">VM — AutoSD OS</div>
+<div class="dm-chips">
+<div class="dm-chip">SPIRE Server<small>identity authority — digest-attested registrations</small></div>
+<div class="dm-chip">FMS Container<small>fleet management sim · uProtocol uEntity</small></div>
+</div></div>
+</div>
+<div class="dm-card dm-has-hw" style="left:510px;top:42px;width:290px">
+<svg class="dm-hw" viewBox="0 0 64 48" aria-hidden="true"><rect x="5" y="4" width="54" height="40" rx="3" fill="#10243a" stroke="#66f2a1" stroke-width="1.6"/><circle cx="10" cy="9" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><circle cx="54" cy="9" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><circle cx="10" cy="39" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><circle cx="54" cy="39" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><rect x="23" y="14" width="18" height="15" rx="1.5" fill="#0d1c2e" stroke="#4fd9ff" stroke-width="1.5"/><path d="M26,11.5 v2 M30,11.5 v2 M34,11.5 v2 M38,11.5 v2 M26,29.5 v2 M30,29.5 v2 M34,29.5 v2 M38,29.5 v2" stroke="#4fd9ff" stroke-width="1" opacity=".8"/><rect x="3" y="14" width="4" height="7" rx="1" fill="#28415f"/><rect x="3" y="25" width="4" height="7" rx="1" fill="#28415f"/><text x="32" y="39.5" font-size="6" fill="#9fb4ca" text-anchor="middle" font-family="monospace" font-weight="700">i.MX 95</text></svg>
+<div class="dm-role">Vehicle · Domain Controller</div><h3>OpenSOVD + CDA</h3>
+<div class="dm-chips"><div class="dm-chip">Classic Diagnostic Adapter<small>SOVD (Unix socket) → UDS → DoIP · no TCP exposed</small></div></div>
+<span class="dm-os">NXP i.MX 95 · Linux</span>
+</div>
+<div class="dm-card" style="left:935px;top:30px;width:330px">
+<div class="dm-role">Vehicle · Services</div><h3>Workloads</h3>
+<div class="dm-chips">
+<div class="dm-chip">SPIRE Agent<small>issues JWT-SVIDs to attested workloads</small></div>
+<div class="dm-chip">Powertrain Mode Controller<small>fail-closed Rego authorization</small></div>
+<div class="dm-chip">Dozzle<small>live container logs</small></div>
+<div class="dm-chip dm-addon">Anomaly Detection<small>demo add-on</small></div>
+</div>
+</div>
+<div class="dm-card dm-has-hw" style="left:30px;top:350px;width:250px">
+<svg class="dm-hw" viewBox="0 0 64 48" aria-hidden="true"><rect x="5" y="4" width="54" height="40" rx="3" fill="#10243a" stroke="#66f2a1" stroke-width="1.6"/><circle cx="10" cy="9" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><circle cx="54" cy="9" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><circle cx="10" cy="39" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><circle cx="54" cy="39" r="1.6" fill="none" stroke="#28415f" stroke-width="1"/><rect x="23" y="14" width="18" height="15" rx="1.5" fill="#0d1c2e" stroke="#4fd9ff" stroke-width="1.5"/><path d="M26,11.5 v2 M30,11.5 v2 M34,11.5 v2 M38,11.5 v2 M26,29.5 v2 M30,29.5 v2 M34,29.5 v2 M38,29.5 v2" stroke="#4fd9ff" stroke-width="1" opacity=".8"/><rect x="3" y="14" width="4" height="7" rx="1" fill="#28415f"/><rect x="3" y="25" width="4" height="7" rx="1" fill="#28415f"/><text x="32" y="39.5" font-size="6" fill="#9fb4ca" text-anchor="middle" font-family="monospace" font-weight="700">i.MX 95</text></svg>
+<div class="dm-role">Vehicle · ECU</div><h3>ECU Sim</h3>
+<div class="dm-chips"><div class="dm-chip">UDS Server<small>PowerTrain_Mode read / write</small></div></div>
+<span class="dm-os">NXP i.MX 95 · Linux</span>
+</div>
+<div class="dm-card dm-future dm-has-hw" style="left:30px;top:520px;width:250px">
+<svg class="dm-hw" style="width:56px;top:50%;transform:translateY(-50%)" viewBox="0 0 64 52" aria-hidden="true"><circle cx="6" cy="12" r="4" fill="#0e1b2b" stroke="#6f87a0" stroke-width="1.3"/><circle cx="6" cy="12" r="1.4" fill="#07111f" stroke="#6f87a0" stroke-width=".8"/><circle cx="58" cy="12" r="4" fill="#0e1b2b" stroke="#6f87a0" stroke-width="1.3"/><circle cx="58" cy="12" r="1.4" fill="#07111f" stroke="#6f87a0" stroke-width=".8"/><rect x="8" y="5" width="48" height="31" rx="5" fill="#0e1b2b" stroke="#8fa7bf" stroke-width="1.6"/><path d="M16,9 v23 M24,9 v23 M40,9 v23 M48,9 v23" stroke="#33567a" stroke-width="1.2" opacity=".8"/><text x="32" y="23" font-size="6" fill="#8fa7bf" text-anchor="middle" font-family="monospace" font-weight="700">GEN 6</text><rect x="14" y="36" width="36" height="11" rx="2" fill="#0a1522" stroke="#6f87a0" stroke-width="1.3"/><path d="M18,39.5 h28 M18,43.5 h28" stroke="#33567a" stroke-width="1" stroke-dasharray="1.6 2.4"/></svg>
+<div class="dm-role" style="color:#8fa7bf">Future</div>
+<h3 style="color:#b9cbdc">TCM <span style="font-weight:600;font-size:13px;color:#8fa7bf">— Allison Gen 6</span></h3>
+</div>
+<div class="dm-card dm-addon dm-has-hw" style="left:495px;top:350px;width:330px">
+<svg class="dm-hw" viewBox="0 0 64 48" aria-hidden="true"><path d="M47,7 q5,-5 10,0 M49.5,9.5 q2.5,-2.5 5,0" stroke="#4fd9ff" fill="none" stroke-width="1.5" stroke-linecap="round"/><rect x="5" y="11" width="54" height="33" rx="4" fill="#10243a" stroke="#ffcf66" stroke-width="1.6"/><rect x="11" y="16" width="26" height="14" rx="1.5" fill="#07111f" stroke="#28415f" stroke-width="1"/><path d="M14,21 h12 M14,25 h18" stroke="#4fd9ff" stroke-width="1.4" stroke-linecap="round"/><circle cx="46" cy="20" r="3" fill="#0d1c2e" stroke="#9fb4ca" stroke-width="1.2"/><circle cx="46" cy="29" r="3" fill="#0d1c2e" stroke="#9fb4ca" stroke-width="1.2"/><circle cx="14" cy="37.5" r="2" fill="#66f2a1"/><circle cx="22" cy="37.5" r="2" fill="#66f2a1" opacity=".7"/><circle cx="30" cy="37.5" r="2" fill="#66f2a1" opacity=".45"/></svg>
+<div class="dm-role">Edge · Live Hardware</div><h3>Edge Node — MXChip IoT DevKit</h3>
+<ul class="dm-sensors">
+<li>Sensors: accelerometer · pressure · magnetometer</li>
+<li>Display (with actuator)</li>
+<li>Shows current powertrain mode</li>
+</ul>
+</div>
+<div class="dm-card dm-addon dm-has-hw" style="left:935px;top:400px;width:330px">
+<svg class="dm-hw" viewBox="0 0 64 44" aria-hidden="true"><rect x="14" y="3" width="36" height="24" rx="2.5" fill="#0d1c2e" stroke="#ffcf66" stroke-width="1.6"/><rect x="17.5" y="6.5" width="29" height="17" rx="1" fill="#10243a"/><path d="M20,11 h14 M20,15 h22 M20,19 h10" stroke="#4fd9ff" stroke-width="1.4" stroke-linecap="round" opacity=".8"/><path d="M9,31 L55,31 L60,38 Q60,40 57,40 L7,40 Q4,40 4,38 Z" fill="#10243a" stroke="#28415f" stroke-width="1.4"/><rect x="26" y="33" width="12" height="2.6" rx="1.3" fill="#28415f"/></svg>
+<div class="dm-role">Observe</div><h3>uProtocol Dashboard</h3>
+<div class="dm-chips"><div class="dm-chip dm-addon">Java container<small>live view of uProtocol traffic</small></div></div>
+</div>
+<div class="dm-edge-label" style="left:342px;top:88px">Ethernet · uProtocol</div>
+<div class="dm-edge-label" style="left:340px;top:252px">DoIP</div>
+<div class="dm-edge-label dm-future" style="left:168px;top:490px">CAN · future</div>
+<div class="dm-edge-label" style="left:678px;top:262px">WiFi · uProtocol on MQTT</div>
+<div class="dm-edge-label" style="left:824px;top:88px">uProtocol</div>
+<div class="dm-edge-label" style="left:1118px;top:318px">WebSockets · WiFi</div>
+<div class="dm-flow">
+<div class="dm-flowtitle">Headline use case — set powertrain mode, end to end</div>
+<div class="dm-flowline">
+<span class="dm-hop">FMS</span>
+<span class="dm-via"><span class="dm-proto">uProtocol / MQTT</span><span class="dm-arrow">⟶</span></span>
+<span class="dm-hop">Powertrain Mode Controller</span>
+<span class="dm-via"><span class="dm-proto">SOVD · Unix socket</span><span class="dm-arrow">⟶</span></span>
+<span class="dm-hop">CDA</span>
+<span class="dm-via"><span class="dm-proto">UDS over DoIP</span><span class="dm-arrow">⟶</span></span>
+<span class="dm-hop">ECU</span>
+<span class="dm-via"><span class="dm-proto">uProtocol / MQTT</span><span class="dm-arrow">⟶</span></span>
+<span class="dm-hop">Edge Node display</span>
+<span class="dm-flownote"><b>Every hop authenticated:</b> digest-attested workloads, short-lived JWT-SVIDs, fail-closed Rego.</span>
+</div>
+</div>
+<div class="dm-legend">
+<span class="dm-key"><span class="dm-swatch"></span> Shipped in commercial-sdv-stack</span>
+<span class="dm-key"><span class="dm-swatch dm-addon"></span> Hackathon demo add-on (hardware / visualization)</span>
+<span class="dm-key"><span class="dm-swatch dm-future"></span> Future roadmap</span>
+</div>
+</div>
+</div>
+<div class="footer"><span><b>05</b> / 05</span><span class="source-strip">Source: live demo rig — commercial-sdv-stack profiles deployed across PC, domain controller, ECU and MXChip edge node.</span></div>
 </section>
 
 </div>
 <div class="nav"><button aria-label="Previous slide" id="prev">&lt;</button><button aria-label="Next slide" id="next">&gt;</button></div>
-<div class="progress" id="progress"><i class="active"></i><i></i><i></i><i></i></div>
+<div class="progress" id="progress"><i class="active"></i><i></i><i></i><i></i><i></i></div>
 <script>
 (function(){
   const slides=[...document.querySelectorAll('.slide')];
@@ -189,6 +323,13 @@
     slides.forEach((s,i)=>s.classList.toggle('active',i===index));
     dots.forEach((d,i)=>d.classList.toggle('active',i===index));
   }
+  const dmStage=document.getElementById('dmStage'),dmCanvas=document.getElementById('dmCanvas');
+  function fitDemo(){
+    if(!dmStage||!dmCanvas)return;
+    const s=Math.min(dmStage.clientWidth/1320,dmStage.clientHeight/780,1);
+    dmCanvas.style.transform=`translate(-50%,-50%) scale(${s})`;
+  }
+  window.addEventListener('resize',fitDemo);fitDemo();
   document.getElementById('next').onclick=()=>showSlide(index+1);
   document.getElementById('prev').onclick=()=>showSlide(index-1);
   document.addEventListener('keydown',e=>{
