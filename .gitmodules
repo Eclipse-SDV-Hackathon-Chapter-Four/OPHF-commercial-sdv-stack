@@ -4,3 +4,6 @@
 [submodule "commercial-sdv-stack"]
 	path = commercial-sdv-stack
 	url = git@github.com:Eclipse-SDV-Hackathon-Chapter-Four/commercial-sdv-stack.git
+[submodule "demo"]
+	path = demo
+	url = git@github.com:Eclipse-SDV-Hackathon-Chapter-Four/demo.git
