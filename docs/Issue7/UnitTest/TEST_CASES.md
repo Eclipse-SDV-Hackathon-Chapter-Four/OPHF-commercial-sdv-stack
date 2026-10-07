@@ -24,6 +24,10 @@ scripts/register_workloads.sh
 
 The script exits with `0` if no test failed. Known limitations are reported as `KNOWN` and do not fail the run.
 
+Before the tests, a preflight aborts with `STALE` if a locally built service's container does not run the latest
+built image, and prints `WARN` if an image is older than the latest change to its sources (`uservices/` or
+`ecu-sim/`). If TC13 fails, the script prints PMC's uProtocol address and the MQTT topics FMS publishes to.
+
 Optional environment variables:
 
 | Variable | Default | Purpose |
