@@ -67,6 +67,48 @@ for svc in sovd-cda powertrain-mode-controller fms ecu-sim spire-server; do
   fi
 done
 
+# --- Preflight: locally built images are up to date -------------------------
+
+UP_CMD="docker compose --profile infra --profile powertrain up -d --build"
+# root in WSL runs against a Windows-owned checkout, so trust exactly this repository
+git_() { git -c safe.directory="$(pwd)" "$@"; }
+
+# newest change of a build context: its last commit or a later uncommitted edit
+src_time() {
+  t=$(git_ log -1 --format=%ct -- "$1" 2>/dev/null) && [ -n "$t" ] || return 1
+  for f in $(git_ status --porcelain --no-renames -- "$1" | cut -c4-); do
+    [ -f "$f" ] && m=$(stat -c %Y "$f") && [ "$m" -gt "$t" ] && t=$m
+  done
+  echo "$t"
+}
+
+stale=0
+for entry in fms:uservices vehicle-properties:uservices powertrain-mode-controller:uservices \
+  sovd-cda:uservices ecu-sim:ecu-sim; do
+  svc="${entry%%:*}"
+  dir="${entry#*:}"
+  cid=$(container_id "$svc")
+  [ -n "$cid" ] || continue
+  tag=$(docker inspect -f '{{.Config.Image}}' "$cid")
+  created=$(date -d "$(docker image inspect -f '{{.Created}}' "$tag")" +%s)
+  # sovd-cda is built with SOURCE_DATE_EPOCH=0, so its timestamp says nothing about freshness
+  [ "$created" -le 0 ] && continue
+  # image IDs change on every cached rebuild (provenance), so compare content timestamps
+  if [ "$(date -d "$(docker inspect -f '{{.Created}}' "$cid")" +%s)" -lt "$created" ]; then
+    echo "STALE  $svc: container was created before the latest build of $tag"
+    stale=1
+  elif s=$(src_time "$dir"); then
+    # only a warning: an unchanged binary keeps the cached image and its old timestamp
+    [ "$s" -gt "$created" ] && echo "WARN   $svc: image is older than the latest change in $dir/ (run: $UP_CMD)"
+  else
+    echo "WARN   $svc: cannot read git history, skipping source freshness check"
+  fi
+done
+if [ "$stale" -ne 0 ]; then
+  echo "Recreate the containers first: $UP_CMD"
+  exit 2
+fi
+
 # --- Transport exposure -----------------------------------------------------
 
 id="TC01"; name="CDA has no TCP listener on port 20002"
@@ -93,8 +135,9 @@ rc=$?
 [ "$rc" -eq 7 ] && pass "$id" "$name" || fail "$id" "$name" "curl exit $rc (expected 7)"
 
 id="TC04"; name="vehicle-uprotocol network (PMC's): sovd-cda not resolvable"
+# unknown names are forwarded to the host's DNS, which can take several seconds to fail
 docker run --rm --network "${PROJECT}_vehicle-uprotocol" --entrypoint curl "$CLIENT_IMG" \
-  -s -m 3 -o /dev/null http://sovd-cda:20002/
+  -s -m 20 -o /dev/null http://sovd-cda:20002/
 rc=$?
 [ "$rc" -eq 6 ] && pass "$id" "$name" || fail "$id" "$name" "curl exit $rc (expected 6)"
 
@@ -175,6 +218,12 @@ if [ "$fms_ok" -ge 2 ] && [ "$ecu_ok" -ge 2 ]; then
   pass "$id" "$name"
 else
   fail "$id" "$name" "FMS successes=$fms_ok, ECU writes=$ecu_ok (expected >=2 each)"
+  pmc_addr=$(docker inspect -f '{{range .Config.Env}}{{println .}}{{end}}' "$(container_id powertrain-mode-controller)" \
+    | sed -n 's/^UP_LOCAL_ADDRESS=//p')
+  echo "       PMC address: ${pmc_addr} - FMS requests must be sent to it"
+  echo "       MQTT topics seen in 7s (count source/sink); a sink other than PMC's means stale images:"
+  docker compose exec -T mosquitto mosquitto_sub -h localhost -t '#' -F '%t' -W 7 2>/dev/null \
+    | sort | uniq -c | sed 's/^/       /'
 fi
 
 # --- Authorization with a valid but unauthorized JWT-SVID -------------------
